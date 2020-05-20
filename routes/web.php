@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'admin','middleware'=>['auth','admin']], function(){
+	Route::get('dashboard','DashboardController@index')->name('dashboard');
+});
+
+Route::group(['as'=>'editor.','prefix'=>'editor','namespace'=>'admin','middleware'=>['auth','editor']], function(){
+	Route::get('dashboard','DashboardController@index')->name('dashboard');
+});
+
