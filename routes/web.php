@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
+Route::get('/login', 'HomeController@index')->name('login');
+Route::get('/register', 'HomeController@index')->name('register');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::group(['middleware' => 'web'], function () {
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'admin','middleware'=>['auth','admin']], function(){
 	Route::get('dashboard','DashboardController@index')->name('dashboard');
 });
@@ -28,4 +30,6 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'admin','middleware'
 Route::group(['as'=>'editor.','prefix'=>'editor','namespace'=>'admin','middleware'=>['auth','editor']], function(){
 	Route::get('dashboard','DashboardController@index')->name('dashboard');
 });
-
+});
+//Master Route
+Route::get('/{all?}', 'HomeController@index')->where(['all' => '.*']);
