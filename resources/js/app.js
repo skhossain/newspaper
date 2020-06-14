@@ -7,7 +7,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import router from './routes';
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,20 +18,17 @@ import router from './routes';
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
-);
+
 Vue.component('fontend', require('./components/fontend.vue').default);
-Vue.component('backend', require('./components/backend.vue').default);
+Vue.component('admin', require('./components/admin.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+import router from './routers';
 const app = new Vue({
     el: '#app',
-    router
+    router,
 });

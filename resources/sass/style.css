@@ -1,0 +1,40 @@
+.s-menu-title{
+    padding: 2px 5px;
+    border:1px solid #000;
+    border-radius: 10px;
+    margin: auto;
+    width:140px;
+    background-color: #fff;
+    display: block;
+    text-align: center;
+}
+.s-menu-title::before{
+    width: 100%;
+    background-color: #f00;
+    position: absolute;
+    left: 0;
+    top: 15px;
+    height: 2px;
+    content: "";
+    display: block;
+    z-index: -1;
+}
+.s-menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.s-menu li{
+    display: inline-block;
+    padding-right:5px;
+    border-right:1px dashed #ccc;
+}
+.s-menu li a{
+    text-decoration: none;
+    color: #000;
+}
+.s-menu li:last-child{
+    padding-right:0;
+    border-right:none;
+}

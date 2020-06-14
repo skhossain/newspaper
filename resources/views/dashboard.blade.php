@@ -1,5 +1,7 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
 
 @section('content')
-<backend></backend>
+  <!-- Content Header (Page header) -->
+  <admin></admin>
+  
 @endsection
