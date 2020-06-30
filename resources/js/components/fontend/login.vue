@@ -6,6 +6,7 @@
                 <div class="card-header">Login</div>
                 <div class="card-body">
                     <p v-if="errorm" style="color:red">{{errorm}}</p>
+                    <p v-if="changed_password">{{changed_password}}</p>
                     <form @submit.prevent="login">
                         <div class="form-group row"><label for="email"
                                 class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
@@ -51,6 +52,7 @@ export default {
             email:"",
             password:"",
             errorm:"",
+            changed_password:this.$route.query.changed,
         }
     },
     mounted(){

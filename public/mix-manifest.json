@@ -4,5 +4,7 @@
     "/dashboard.js": "/dashboard.js",
     "/home.js": "/home.js",
     "/login.js": "/login.js",
-    "/register.js": "/register.js"
+    "/register.js": "/register.js",
+    "/newpassword.js": "/newpassword.js",
+    "/resetpassword.js": "/resetpassword.js"
 }

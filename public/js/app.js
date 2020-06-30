@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"dashboard":"dashboard","home":"home","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"dashboard":"dashboard","home":"home","login":"login","newpassword":"newpassword","register":"register","resetpassword":"resetpassword"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -37598,7 +37598,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("router-view")
+  return _c("router-view", { key: _vm.$route.fullPath })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53011,7 +53011,11 @@ var register = function register() {
 };
 
 var resetpassword = function resetpassword() {
-  return __webpack_require__.e(/*! import() | login */ "login").then(__webpack_require__.bind(null, /*! ./components/fontend/resetpassword */ "./resources/js/components/fontend/resetpassword.vue"));
+  return __webpack_require__.e(/*! import() | resetpassword */ "resetpassword").then(__webpack_require__.bind(null, /*! ./components/fontend/resetpassword */ "./resources/js/components/fontend/resetpassword.vue"));
+};
+
+var resetpasswordform = function resetpasswordform() {
+  return __webpack_require__.e(/*! import() | newpassword */ "newpassword").then(__webpack_require__.bind(null, /*! ./components/fontend/newpassword */ "./resources/js/components/fontend/newpassword.vue"));
 };
 
 var dashboard = function dashboard() {
@@ -53032,7 +53036,11 @@ var routes = [//Home
   path: '/password/reset',
   component: resetpassword
 }, {
-  path: '/root-admin',
+  path: '/password/reset/:token',
+  component: resetpasswordform
+}, //Admin
+{
+  path: '/admin',
   component: dashboard
 }];
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

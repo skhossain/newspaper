@@ -21,7 +21,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@index')->name('login');
 Route::get('/register', 'HomeController@index')->name('register');
 //Route::post('/getuserdata', 'Auth\RegisterController@getUser')->name('getUser');
-//Route::get('/password/reset', 'HomeController@index')->name('password.request');
+Route::get('/password/reset', 'HomeController@index')->name('password.request');
+Route::get('/password/reset/{token}', 'HomeController@index')->name('password.reset');
 
 //Route::get('/profile', 'ProfileController@index')->name('profile')->middleware('verified','auth');
 
