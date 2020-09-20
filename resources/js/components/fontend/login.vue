@@ -33,9 +33,11 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Login
-                                </button> <router-link to="/password/reset" class="btn btn-link">
+                                </button> 
+                                <router-link to="/password/reset" class="btn btn-link">
                                     Forgot Your Password?
-                                </router-link></div>
+                                </router-link>
+                                </div>
                         </div>
                     </form>
                 </div>
@@ -52,7 +54,7 @@ export default {
             email:"",
             password:"",
             errorm:"",
-            changed_password:this.$route.query.changed,
+            changed_password:this.$route.query.mass,
         }
     },
     mounted(){

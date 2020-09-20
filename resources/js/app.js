@@ -27,6 +27,11 @@ Vue.component('admin', require('./components/admin.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//Ckeditor
+//import CKEditor from 'ckeditor4-vue';
+import CKEditor from 'ckeditor4full-vue';
+Vue.use( CKEditor );
+
 import router from './routers';
 const app = new Vue({
     el: '#app',

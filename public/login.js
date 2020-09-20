@@ -56,13 +56,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       email: "",
       password: "",
       errorm: "",
-      changed_password: this.$route.query.changed
+      changed_password: this.$route.query.mass
     };
   },
   mounted: function mounted() {//this.check_user();

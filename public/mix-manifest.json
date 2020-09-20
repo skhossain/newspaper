@@ -1,10 +1,13 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/category.js": "/category.js",
     "/dashboard.js": "/dashboard.js",
     "/home.js": "/home.js",
     "/login.js": "/login.js",
+    "/newpost.js": "/newpost.js",
+    "/passwordrestform.js": "/passwordrestform.js",
     "/register.js": "/register.js",
-    "/newpassword.js": "/newpassword.js",
-    "/resetpassword.js": "/resetpassword.js"
+    "/restpassword.js": "/restpassword.js",
+    "/vendors~newpost.js": "/vendors~newpost.js"
 }

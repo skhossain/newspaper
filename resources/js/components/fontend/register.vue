@@ -74,8 +74,7 @@ export default {
                                 Refresh:reponse.data.refresh_token
                             };
                             document.cookie ="user_token=" + JSON.stringify(user_token) + ";path=/";
-                            //this.$router.push('/root-admin');
-                           window.location.href='/root-admin';
+                            window.location.href='/admin/dashboard';
                             }else{
                             this.errorm=reponse.data
                             }

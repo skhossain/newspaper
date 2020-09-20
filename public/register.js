@@ -84,9 +84,8 @@ __webpack_require__.r(__webpack_exports__);
                 Access: reponse.data.token_type + ' ' + reponse.data.access_token,
                 Refresh: reponse.data.refresh_token
               };
-              document.cookie = "user_token=" + JSON.stringify(user_token) + ";path=/"; //this.$router.push('/root-admin');
-
-              window.location.href = '/root-admin';
+              document.cookie = "user_token=" + JSON.stringify(user_token) + ";path=/";
+              window.location.href = '/admin/dashboard';
             } else {
               _this.errorm = reponse.data;
             }
