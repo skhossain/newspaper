@@ -46,21 +46,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: ""
     };
   },
+  mounted: function mounted() {
+    this.get_categories();
+  },
   methods: {
+    get_categories: function get_categories() {
+      var _this = this;
+
+      axios.post('/admin/allcategories').then(function (response) {
+        console.log(response.data);
+
+        _this.$store.commit('categories', response.data);
+      });
+    },
     newcategory: function newcategory() {
+      var _this2 = this;
+
       axios.post('/admin/newcategory', {
         name: this.name
       }).then(function (response) {
-        console.log(response.data);
+        _this2.$store.commit('addnew_category_item', response.data);
+
+        _this2.name = "";
       })["catch"](function (error) {
         console.log(error);
       });
+    }
+  },
+  computed: {
+    categories: function categories() {
+      return this.$store.getters.categories;
     }
   }
 });
@@ -152,6 +203,50 @@ var render = function() {
             )
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "card-body",
+              staticStyle: { "overflow-y": "scroll", "max-height": "300px" }
+            },
+            [
+              _c(
+                "table",
+                { staticClass: "table" },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._l(_vm.categories, function(category, index) {
+                    return _c("tr", { key: index }, [
+                      _c("td", [_vm._v(_vm._s(index + 1))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(category.name))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        category.status == 1
+                          ? _c("span", [_vm._v("Active")])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        category.status == 0
+                          ? _c("span", [_vm._v("Ivactive")])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(4, true)
+                    ])
+                  })
+                ],
+                2
+              )
+            ]
+          )
+        ])
       ])
     ])
   ])
@@ -171,6 +266,36 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h2", { staticClass: "card-title" }, [_vm._v("New Category")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h2", { staticClass: "card-title" }, [_vm._v("Category list")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("SL")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Satus")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Action")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Edit")])
     ])
   }
 ]

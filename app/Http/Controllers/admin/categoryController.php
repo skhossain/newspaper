@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class categoryController extends Controller
 {
+    public  function allcategories()
+    {
+        return Category::all();
+    }
+    
     public function create(Request $request){
        // return $request;
         $validatedData = $request->validate([

@@ -31,6 +31,36 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Category list</h2>
+                </div>
+                <div class="card-body" style="overflow-y:scroll;max-height: 300px;">
+                    <table class="table">
+                        <tr>
+                            <th>SL</th>
+                            <th>Name</th>
+                            <th>Satus</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr v-for="(category, index) in categories" :key="index">
+                            <td>{{index+1}}</td>
+                            <td>{{category.name}}</td>
+                            <td>
+                                <span v-if="category.status==1">Active</span>
+                                <span v-if="category.status==0">Ivactive</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">Edit</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
         
     </section>
     </div>
@@ -42,15 +72,30 @@ export default {
             name:"",
         }
     },
+    mounted(){
+        this.get_categories();
+    },
     methods:{
+        get_categories(){
+            axios.post('/admin/allcategories').then(response=>{
+                console.log(response.data);
+                this.$store.commit('categories',response.data)
+            })
+        },
         newcategory(){
             axios.post('/admin/newcategory',{
                 name:this.name
             }).then(response=>{
-                console.log(response.data)
+                this.$store.commit('addnew_category_item',response.data)
+                this.name="";
             }).catch(function (error) {
                 console.log(error);
             })
+        }
+    },
+    computed:{
+        categories(){
+            return this.$store.getters.categories
         }
     }
 }

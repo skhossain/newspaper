@@ -32,8 +32,11 @@ Vue.component('admin', require('./components/admin.vue').default);
 import CKEditor from 'ckeditor4full-vue';
 Vue.use( CKEditor );
 
+import store from './stores'
+
 import router from './routers';
 const app = new Vue({
     el: '#app',
     router,
+    store
 });

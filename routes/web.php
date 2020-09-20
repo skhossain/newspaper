@@ -29,6 +29,7 @@ Route::get('/password/reset/{token}', 'HomeController@index')->name('password.re
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'admin','middleware'=>['auth','verified']], function(){
 	Route::get('dashboard','DashboardController@index')->name('dashboard');
 	Route::post('newcategory', 'categoryController@create');
+	Route::post('allcategories','categoryController@allcategories');
 });
 
 Route::group(['as'=>'editor.','prefix'=>'editor','namespace'=>'admin','middleware'=>['auth']], function(){
