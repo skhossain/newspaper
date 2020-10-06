@@ -30,6 +30,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'admin','middleware'
 	Route::get('dashboard','DashboardController@index')->name('dashboard');
 	Route::post('newcategory', 'categoryController@create');
 	Route::post('allcategories','categoryController@allcategories');
+	Route::post('editcategory','categoryController@editcategory');
 });
 
 Route::group(['as'=>'editor.','prefix'=>'editor','namespace'=>'admin','middleware'=>['auth']], function(){

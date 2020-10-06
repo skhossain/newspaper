@@ -24,4 +24,13 @@ class categoryController extends Controller
         $new->save();
         return $new;
     }
+
+    public function editcategory(Request $request){
+        $category=Category::where('id',$request->id)->first();
+        $category->name=$request->name;
+        $category->status=$request->status;
+        $category->save();
+        return $category;
+    }
+
 }

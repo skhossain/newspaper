@@ -18,7 +18,25 @@
     
     <section class="content row m-3">
         <div class="col-md-6">
-            <div class="card">
+            <div v-if="edit_category_id" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Edit Category</h2>
+                </div>
+                <div class="card-body">
+                    <label>Category Name</label>
+                    <input type="text" class="form-control" v-model="name" placeholder="name">
+                    <label>Status</label>
+                    <select class="form-control" v-model="status">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-info" @click="clear_category()">Create new</button>
+                    <button class="btn btn-success" @click="editcategory()">Save change</button>
+                </div>
+            </div>
+            <div v-else class="card">
                 <div class="card-header">
                     <h2 class="card-title">New Category</h2>
                 </div>
@@ -52,7 +70,7 @@
                                 <span v-if="category.status==0">Ivactive</span>
                             </td>
                             <td>
-                                <button class="btn btn-primary">Edit</button>
+                                <button class="btn btn-primary" @click="select_category(category.id)">Edit</button>
                             </td>
                         </tr>
                     </table>
@@ -70,6 +88,8 @@ export default {
     data(){
         return{
             name:"",
+            status:"",
+            edit_category_id:"",
         }
     },
     mounted(){
@@ -91,6 +111,31 @@ export default {
             }).catch(function (error) {
                 console.log(error);
             })
+        },
+        select_category(id){ 
+            var category= this.categories.find(c=>c.id==id);
+            this.edit_category_id=id;
+            this.name=category.name;
+            this.status=category.status;
+        },
+        editcategory(){
+            axios.post('/admin/editcategory',{
+                id:this.edit_category_id,
+                name:this.name,
+                status:this.status
+            }).then(response=>{
+                var category= this.categories.find(c=>c.id==this.edit_category_id);
+                category.name=this.name;
+                category.status=this.status;
+                this.edit_category_id="";
+                this.name="";
+                this.status="";
+            })
+        },
+        clear_category(){
+            this.edit_category_id="";
+            this.name="";
+            this.status="";
         }
     },
     computed:{
