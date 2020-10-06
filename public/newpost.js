@@ -68,6 +68,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -122,12 +123,27 @@ __webpack_require__.r(__webpack_exports__);
       dragged: true
     };
   },
+  mounted: function mounted() {
+    this.get_categories();
+  },
   methods: {
     onImageReady: function onImageReady() {
       this.scale = 1;
       this.rotation = 0;
     },
-    newpost: function newpost() {}
+    newpost: function newpost() {},
+    get_categories: function get_categories() {
+      var _this = this;
+
+      axios.post('/admin/allcategories').then(function (response) {
+        _this.$store.commit('categories', response.data);
+      });
+    }
+  },
+  computed: {
+    categories: function categories() {
+      return this.$store.getters.categories;
+    }
   },
   watch: {
     scale: function scale() {
@@ -318,7 +334,22 @@ var render = function() {
           _vm._v(" "),
           _c("label", [_vm._v("Category")]),
           _vm._v(" "),
-          _vm._m(1)
+          _c(
+            "select",
+            { staticClass: "form-control" },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Uncategory")]),
+              _vm._v(" "),
+              _vm._l(_vm.categories, function(category, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: category.id } },
+                  [_vm._v(_vm._s(category.name))]
+                )
+              })
+            ],
+            2
+          )
         ],
         1
       )
@@ -332,14 +363,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-6" }, [
       _c("h1", [_vm._v("New post")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "form-control" }, [
-      _c("option", { attrs: { value: "1" } }, [_vm._v("National")])
     ])
   }
 ]

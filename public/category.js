@@ -110,8 +110,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/admin/allcategories').then(function (response) {
-        console.log(response.data);
-
         _this.$store.commit('categories', response.data);
       });
     },

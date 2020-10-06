@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/userinfoget', function (Request $request) {
+Route::middleware('auth:api')->post('/userinfoget', function (Request $request) {
     return $request->user();
 });

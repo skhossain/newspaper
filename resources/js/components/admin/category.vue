@@ -98,7 +98,6 @@ export default {
     methods:{
         get_categories(){
             axios.post('/admin/allcategories').then(response=>{
-                console.log(response.data);
                 this.$store.commit('categories',response.data)
             })
         },

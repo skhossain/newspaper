@@ -49,9 +49,10 @@
             <label>Keyword</label>
             <textarea class="form-control" placeholder="Keyword"></textarea>
             <label>Category</label>
-            <section class="form-control">
-                <option value="1">National</option>
-            </section>
+            <select class="form-control">
+                <option value="">Uncategory</option>
+                <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
+            </select>
         </div>
     </section>
     </div>
@@ -96,6 +97,9 @@ export default {
                 dragged: true,
         }
     },
+    mounted(){
+        this.get_categories();
+    },
     methods:{
         onImageReady: function onImageReady() {
                 this.scale = 1;
@@ -103,6 +107,16 @@ export default {
             },
         newpost(){
             
+        },
+        get_categories(){
+            axios.post('/admin/allcategories').then(response=>{
+                this.$store.commit('categories',response.data)
+            })
+        },
+    },
+    computed:{
+        categories(){
+            return this.$store.getters.categories
         }
     },
     watch: {
