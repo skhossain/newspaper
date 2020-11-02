@@ -31,6 +31,11 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'admin','middleware'
 	Route::post('newcategory', 'categoryController@create');
 	Route::post('allcategories','categoryController@allcategories');
 	Route::post('editcategory','categoryController@editcategory');
+	//Post
+	Route::post('newpost','PostContoller@newpost');
+	Route::get('allposts','PostContoller@allpost');
+	Route::get('getsinglepost','PostContoller@getsinglepost');
+	Route::post('editpost','PostContoller@editpost');
 });
 
 Route::group(['as'=>'editor.','prefix'=>'editor','namespace'=>'admin','middleware'=>['auth']], function(){

@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>New post</h1>
+            <h1>Edit post</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
-              <li class="breadcrumb-item active">New post</li>
+              <li class="breadcrumb-item active">Edit post</li>
             </ol>
           </div>
         </div>
@@ -19,9 +19,9 @@
     <section class="content row m-3">
         <div class="col-md-9">
             <label>Post title</label>
-            <input v-model="title" class="form-control" placeholder="News title">
+            <input v-model="post.title" class="form-control" placeholder="News title">
             <label>News body</label>
-            <ckeditor v-model="newsbody" :config="editorConfig"></ckeditor>
+            <ckeditor v-model="post.content" :config="editorConfig"></ckeditor>
             
         </div>
         <div class="col-md-3">
@@ -47,9 +47,9 @@
                                 </div>
 
             <label>Keyword</label>
-            <textarea class="form-control" placeholder="Keyword" v-model="Keyword"></textarea>
+            <textarea class="form-control" placeholder="Keyword" v-model="post.Keyword"></textarea>
             <label>Category</label>
-            <select class="form-control" v-model="category_id">
+            <select class="form-control" v-model="post.category_id">
                 <option value="">Uncategory</option>
                 <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
             </select>
@@ -66,6 +66,8 @@ export default {
         },
     data(){
         return{
+            post_id:this.$route.params.id,
+            post:"",
             title:"",
             newsbody:"",
             category_id:"",
@@ -102,6 +104,7 @@ export default {
     },
     mounted(){
         this.get_categories();
+        this.get_post();
     },
     methods:{
         onImageReady: function onImageReady() {
@@ -112,13 +115,14 @@ export default {
             if (this.$refs.vueavatar.getImageScaled()) {
             var img = this.$refs.vueavatar.getImageScaled();
             var image = img.toDataURL();
-            axios.post('/admin/newpost', {
+            axios.post('/admin/editpost', {
+                    id:this.post_id,
                     user_id:this.user.id,
-                    category_id:this.category_id,
-                    title:this.title,
-                    content:this.newsbody,
+                    category_id:this.post.category_id,
+                    title:this.post.title,
+                    content:this.post.content,
                     image: image,
-                    keword:this.Keyword,
+                    keword:this.post.Keyword,
                     status:status,
             }).then(resp => {
                    console.log(resp.data);             
@@ -130,6 +134,16 @@ export default {
                 this.$store.commit('categories',response.data)
             })
         },
+        get_post(){
+            axios.get('/admin/getsinglepost',{
+                params:{
+                    id:this.post_id,
+                }
+            }).then(response=>{
+                this.image=response.data.thembaneel;
+                this.post=response.data;
+            });
+        }
     },
     computed:{
         categories(){

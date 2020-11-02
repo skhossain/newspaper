@@ -180,14 +180,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <router-link to="/admin/allpost" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Posts
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </router-link>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <router-link to="/admin/allpost" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All post</p>
+                </router-link>
+              </li>
               <li class="nav-item">
                 <router-link to="/admin/newpost" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"category":"category","dashboard":"dashboard","home":"home","login":"login","passwordrestform":"passwordrestform","register":"register","restpassword":"restpassword","vendors~newpost":"vendors~newpost","newpost":"newpost"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"allpost":"allpost","category":"category","dashboard":"dashboard","home":"home","login":"login","passwordrestform":"passwordrestform","register":"register","restpassword":"restpassword","vendors~editpost~newpost":"vendors~editpost~newpost","editpost":"editpost","newpost":"newpost"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -58894,7 +58894,15 @@ var dashboard = function dashboard() {
 };
 
 var newpost = function newpost() {
-  return Promise.all(/*! import() | newpost */[__webpack_require__.e("vendors~newpost"), __webpack_require__.e("newpost")]).then(__webpack_require__.bind(null, /*! ./components/admin/post */ "./resources/js/components/admin/post.vue"));
+  return Promise.all(/*! import() | newpost */[__webpack_require__.e("vendors~editpost~newpost"), __webpack_require__.e("newpost")]).then(__webpack_require__.bind(null, /*! ./components/admin/post */ "./resources/js/components/admin/post.vue"));
+};
+
+var allpost = function allpost() {
+  return __webpack_require__.e(/*! import() | allpost */ "allpost").then(__webpack_require__.bind(null, /*! ./components/admin/allpost */ "./resources/js/components/admin/allpost.vue"));
+};
+
+var editpost = function editpost() {
+  return Promise.all(/*! import() | editpost */[__webpack_require__.e("vendors~editpost~newpost"), __webpack_require__.e("editpost")]).then(__webpack_require__.bind(null, /*! ./components/admin/editpost */ "./resources/js/components/admin/editpost.vue"));
 };
 
 var category = function category() {
@@ -58927,6 +58935,12 @@ var routes = [//Home
 }, {
   path: '/admin/newpost',
   component: newpost
+}, {
+  path: '/admin/allpost',
+  component: allpost
+}, {
+  path: '/admin/editpost/:id',
+  component: editpost
 }];
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
@@ -58954,11 +58968,15 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    categories: ""
+    categories: "",
+    posts: ""
   },
   getters: {
     categories: function categories(state) {
       return state.categories;
+    },
+    posts: function posts(state) {
+      return state.posts;
     }
   },
   mutations: {
@@ -58970,6 +58988,16 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     remove_category_item: function remove_category_item(state, payload) {
       state.categories.splice(payload, 1);
+    },
+    //Posts
+    posts: function posts(state, payload) {
+      state.posts = payload;
+    },
+    addnew_post_item: function addnew_post_item(state, payload) {
+      state.posts.splice(0, 0, payload);
+    },
+    remove_post_item: function remove_post_item(state, payload) {
+      state.posts.splice(payload, 1);
     }
   }
 });

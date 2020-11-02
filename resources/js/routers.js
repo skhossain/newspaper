@@ -12,6 +12,8 @@ const passwordrestform = ()=> import(/* webpackChunkName: "passwordrestform" */'
 
 const dashboard = ()=> import(/* webpackChunkName: "dashboard" */'./components/admin/dashboard');
 const newpost = ()=> import(/* webpackChunkName: "newpost" */'./components/admin/post');
+const allpost = ()=> import(/* webpackChunkName: "allpost" */'./components/admin/allpost');
+const editpost = ()=> import(/* webpackChunkName: "editpost" */'./components/admin/editpost');
 const category = ()=> import(/* webpackChunkName: "category" */'./components/admin/category');
 
 const routes = [
@@ -26,6 +28,8 @@ const routes = [
     {path: '/admin', component:dashboard},
     {path: '/admin/category', component:category},
     {path: '/admin/newpost', component:newpost},
+    {path: '/admin/allpost', component:allpost},
+    {path: '/admin/editpost/:id', component:editpost},
 ]
 
 export default new VueRouter({

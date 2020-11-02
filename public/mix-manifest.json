@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/allpost.js": "/allpost.js",
     "/category.js": "/category.js",
     "/dashboard.js": "/dashboard.js",
     "/home.js": "/home.js",
@@ -9,5 +10,7 @@
     "/passwordrestform.js": "/passwordrestform.js",
     "/register.js": "/register.js",
     "/restpassword.js": "/restpassword.js",
-    "/vendors~newpost.js": "/vendors~newpost.js"
+    "/vendors~newpost.js": "/vendors~newpost.js",
+    "/editpost.js": "/editpost.js",
+    "/vendors~editpost~newpost.js": "/vendors~editpost~newpost.js"
 }
