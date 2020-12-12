@@ -82,10 +82,7 @@ __webpack_require__.r(__webpack_exports__);
       category_id: "",
       Keyword: "",
       editorConfig: {
-        // filebrowserImageBrowseUrl: '/filemanager?type=Images',
-        // filebrowserImageUploadUrl: '/filemanager/upload?type=Images&_token=',
-        //filebrowserBrowseUrl: '/filemanager?type=Files',
-        //filebrowserUploadUrl: '/filemanager/upload?type=Files&_token=',                   
+        filebrowserBrowseUrl: '/filemanager/ckeditor',
         toolbarGroups: [{
           name: 'clipboard',
           groups: ['clipboard', 'undo']

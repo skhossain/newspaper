@@ -29,7 +29,7 @@
             <button class="btn btn-dark" @click="newpost(0)">Save draft</button>
             <hr>
             <label>Thumbnail</label>
-            <vue-avatar :width="200" :height="200" :rotation="rotation_out" :borderRadius="0"
+            <vue-avatar v-if="post" :width="200" :height="200" :rotation="rotation_out" :borderRadius="0"
                                         :scale="scale_out" ref="vueavatar" :image="image" border:1
                                         @vue-avatar-editor:image-ready="onImageReady">
                                     </vue-avatar>
@@ -47,7 +47,7 @@
                                 </div>
 
             <label>Keyword</label>
-            <textarea class="form-control" placeholder="Keyword" v-model="post.Keyword"></textarea>
+            <textarea class="form-control" placeholder="Keyword" v-model="post.keyword"></textarea>
             <label>Category</label>
             <select class="form-control" v-model="post.category_id">
                 <option value="">Uncategory</option>
@@ -73,10 +73,7 @@ export default {
             category_id:"",
             Keyword:"",
             editorConfig: {
-                   // filebrowserImageBrowseUrl: '/filemanager?type=Images',
-                   // filebrowserImageUploadUrl: '/filemanager/upload?type=Images&_token=',
-                    //filebrowserBrowseUrl: '/filemanager?type=Files',
-                    //filebrowserUploadUrl: '/filemanager/upload?type=Files&_token=',                   
+                   filebrowserBrowseUrl: '/filemanager/ckeditor',                 
                     toolbarGroups: [
                         { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
                         { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
@@ -140,7 +137,7 @@ export default {
                     id:this.post_id,
                 }
             }).then(response=>{
-                this.image=response.data.thembaneel;
+                this.image='/images/'+response.data.thembaneel;
                 this.post=response.data;
             });
         }

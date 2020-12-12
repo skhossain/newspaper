@@ -143,7 +143,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(post.viewcount))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(post.keword))]),
+                _c("td", [_vm._v(_vm._s(post.keyword))]),
                 _vm._v(" "),
                 _c(
                   "td",

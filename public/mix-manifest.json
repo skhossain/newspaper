@@ -4,13 +4,13 @@
     "/allpost.js": "/allpost.js",
     "/category.js": "/category.js",
     "/dashboard.js": "/dashboard.js",
+    "/editpost.js": "/editpost.js",
     "/home.js": "/home.js",
     "/login.js": "/login.js",
     "/newpost.js": "/newpost.js",
     "/passwordrestform.js": "/passwordrestform.js",
     "/register.js": "/register.js",
     "/restpassword.js": "/restpassword.js",
-    "/vendors~newpost.js": "/vendors~newpost.js",
-    "/editpost.js": "/editpost.js",
-    "/vendors~editpost~newpost.js": "/vendors~editpost~newpost.js"
+    "/vendors~editpost~newpost.js": "/vendors~editpost~newpost.js",
+    "/vendors~editpost.js": "/vendors~editpost.js"
 }

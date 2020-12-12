@@ -34,7 +34,7 @@
            <td>{{post.title}}</td>
            <td>{{post.created_at}}</td>
            <td>{{post.viewcount}}</td>
-           <td>{{post.keword}}</td>
+           <td>{{post.keyword}}</td>
            <td>
              <router-link :to="'/admin/editpost/'+post.id" class="btn btn-dark">Edit</router-link>
            </td>

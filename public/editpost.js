@@ -84,10 +84,7 @@ __webpack_require__.r(__webpack_exports__);
       category_id: "",
       Keyword: "",
       editorConfig: {
-        // filebrowserImageBrowseUrl: '/filemanager?type=Images',
-        // filebrowserImageUploadUrl: '/filemanager/upload?type=Images&_token=',
-        //filebrowserBrowseUrl: '/filemanager?type=Files',
-        //filebrowserUploadUrl: '/filemanager/upload?type=Files&_token=',                   
+        filebrowserBrowseUrl: '/filemanager/ckeditor',
         toolbarGroups: [{
           name: 'clipboard',
           groups: ['clipboard', 'undo']
@@ -170,7 +167,7 @@ __webpack_require__.r(__webpack_exports__);
           id: this.post_id
         }
       }).then(function (response) {
-        _this2.image = response.data.thembaneel;
+        _this2.image = '/images/' + response.data.thembaneel;
         _this2.post = response.data;
       });
     }
@@ -310,19 +307,21 @@ var render = function() {
           _vm._v(" "),
           _c("label", [_vm._v("Thumbnail")]),
           _vm._v(" "),
-          _c("vue-avatar", {
-            ref: "vueavatar",
-            attrs: {
-              width: 200,
-              height: 200,
-              rotation: _vm.rotation_out,
-              borderRadius: 0,
-              scale: _vm.scale_out,
-              image: _vm.image,
-              "border:1": ""
-            },
-            on: { "vue-avatar-editor:image-ready": _vm.onImageReady }
-          }),
+          _vm.post
+            ? _c("vue-avatar", {
+                ref: "vueavatar",
+                attrs: {
+                  width: 200,
+                  height: 200,
+                  rotation: _vm.rotation_out,
+                  borderRadius: 0,
+                  scale: _vm.scale_out,
+                  image: _vm.image,
+                  "border:1": ""
+                },
+                on: { "vue-avatar-editor:image-ready": _vm.onImageReady }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "text-center" }, [
             _c("label", [
@@ -387,19 +386,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.post.Keyword,
-                expression: "post.Keyword"
+                value: _vm.post.keyword,
+                expression: "post.keyword"
               }
             ],
             staticClass: "form-control",
             attrs: { placeholder: "Keyword" },
-            domProps: { value: _vm.post.Keyword },
+            domProps: { value: _vm.post.keyword },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.post, "Keyword", $event.target.value)
+                _vm.$set(_vm.post, "keyword", $event.target.value)
               }
             }
           }),
